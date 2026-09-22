@@ -6,9 +6,9 @@
 #define FW_VER zmk_firmware_version_260830
  
 #if 1
-#define ZMK_BEHAVIORS_OMIT_CAPS_WORD        // &caps_word
+//#define ZMK_BEHAVIORS_OMIT_CAPS_WORD      // &caps_word - giữ lại để dùng
 #define ZMK_BEHAVIORS_OMIT_KT               // &kt, Key Toggle
-#define ZMK_BEHAVIORS_OMIT_KEY_REPEAT       // &key_repeat, Key Repeat
+//#define ZMK_BEHAVIORS_OMIT_KEY_REPEAT     // &key_repeat - giữ lại để dùng
 #define ZMK_BEHAVIORS_OMIT_SK               // &sk, Sticky Key
 #define ZMK_BEHAVIORS_OMIT_STICKY_LAYER     // &sl, Sticky Layer
 #endif
@@ -140,6 +140,46 @@
         };
         
         studio_unlock: studio_unlock { display-name = "zmk_reserved_studio_unlock"; };
+        
+        // ========== CUSTOM MACROS ==========
+        // Mở lại tab đã đóng: Ctrl+Shift+T
+        ZMK_MACRO(reopen_tab,
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp T>,
+                       <&macro_release &kp LSHFT &kp LCTRL>;
+        )
+        
+        // Screenshot vùng chọn: Win+Shift+S
+        ZMK_MACRO(screenshot,
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&macro_press &kp LGUI &kp LSHFT>,
+                       <&macro_tap &kp S>,
+                       <&macro_release &kp LSHFT &kp LGUI>;
+        )
+        
+        // Select All + Copy: Ctrl+A rồi Ctrl+C
+        ZMK_MACRO(select_all_copy,
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&macro_press &kp LCTRL>,
+                       <&macro_tap &kp A>,
+                       <&macro_pause_for_release>,
+                       <&macro_tap &kp C>,
+                       <&macro_release &kp LCTRL>;
+        )
+        
+        // Task Manager: Ctrl+Shift+Esc
+        ZMK_MACRO(task_manager,
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp ESC>,
+                       <&macro_release &kp LSHFT &kp LCTRL>;
+        )
+        // ========== END CUSTOM MACROS ==========
         #endif
         
         //mouse move
